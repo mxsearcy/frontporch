@@ -1,0 +1,34 @@
+- title: "Local Progress"
+  url: https://localprogress.org/resources/
+  description: Network of progressive local elected officials with policy guides on housing, policing, and economic development.
+  category: Municipal & Policy
+  type: guide
+  tags: [local-government, policy, housing]
+
+- title: "Participatory Budgeting Project"
+  url: https://www.participatorybudgeting.org/learn/
+  description: Resources for running participatory budgeting processes in cities and communities.
+  category: Municipal & Policy
+  type: guide
+  tags: [participatory-budgeting, democracy, local]
+
+- title: "Community Land Trust Network"
+  url: https://cltnetwork.org/resources/
+  description: How-to guides and legal resources for establishing community land trusts to permanently decommodify housing.
+  category: Co-ops & Land
+  type: guide
+  tags: [housing, land-trust, community-ownership]
+
+- title: "Democracy Collaborative"
+  url: https://democracycollaborative.org/content/resources
+  description: Research and resources on community wealth building, worker cooperatives, and local democratic economies.
+  category: Co-ops & Land
+  type: guide
+  tags: [cooperatives, community-wealth, economics]
+
+- title: "USFWC: Worker Co-op Resources"
+  url: https://www.usfwc.org/resources/
+  description: US Federation of Worker Cooperatives — templates, legal guides, and toolkits for starting or converting to a worker co-op.
+  category: Co-ops & Land
+  type: tool
+  tags: [cooperatives, worker-owned, legal]

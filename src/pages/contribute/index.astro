@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+---
+
+<Layout title="Contribute" section="contribute">
+  <SectionHeader title="Contribute" />
+
+  <div style="max-width:42rem;">
+
+    <p style="color:var(--muted);margin-bottom:2rem;line-height:1.7;">
+      All content on Frontporch is managed in a public git repository as YAML and Markdown files.
+      Adding a source, resource, or network is a matter of editing a file and opening a pull request.
+    </p>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Add a news source
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Edit <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">src/content/feeds/news.yaml</code>
+        and add an entry following this schema:
+      </p>
+      <pre style="background:var(--surface);border:1px solid var(--border);padding:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text);overflow-x:auto;line-height:1.6;"><code>- id: outlet-slug           # unique, lowercase, hyphenated
+  name: Outlet Name
+  url: https://example.org
+  rss: https://example.org/feed/
+  description: One sentence description.
+  tags: [news, politics]    # from: news, labor, politics, international,
+                            #   investigative, environment, socialist,
+                            #   progressive, local, independent</code></pre>
+      <p style="color:var(--muted);font-size:0.8rem;margin-top:0.75rem;">
+        Verify the RSS URL works before submitting — paste it into a feed reader or your browser.
+      </p>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Add a learning resource
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Add an entry to the appropriate file in
+        <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">src/content/resources/</code>
+        or create a new <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">.yaml</code> file for a new category:
+      </p>
+      <pre style="background:var(--surface);border:1px solid var(--border);padding:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text);overflow-x:auto;line-height:1.6;"><code>- title: Resource Title
+  url: https://example.org
+  description: One or two sentences. What is it, why does it matter.
+  category: Organizing        # displayed as section heading
+  type: guide                 # article | book | guide | tool |
+                              #   video | course | archive
+  tags: [strategy, tactics]</code></pre>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Add a mutual aid network
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Edit <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">src/content/networks/mutual-aid.yaml</code>:
+      </p>
+      <pre style="background:var(--surface);border:1px solid var(--border);padding:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text);overflow-x:auto;line-height:1.6;"><code>- name: Network Name
+  url: https://example.org
+  description: One sentence description.
+  region: National            # National | International | or a city/state
+  tags: [food, disaster-relief]</code></pre>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        How to submit
+      </h2>
+      <ol style="color:var(--muted);font-size:0.9rem;line-height:2;padding-left:1.25rem;">
+        <li>Fork the repository on GitHub</li>
+        <li>Edit the relevant YAML file</li>
+        <li>Open a pull request with a brief description of what you're adding and why</li>
+        <li>A maintainer will review, verify the link/feed, and merge</li>
+      </ol>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:1rem;">
+        You can also open an issue if you want to propose something without writing YAML yourself.
+      </p>
+      <div style="margin-top:1.25rem;">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Go to GitHub →
+        </a>
+      </div>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Support the project
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Frontporch has no ads and no investors. If you find it useful, you can donate via Liberapay — a free, open-source recurring donation platform.
+      </p>
+      <a href="https://liberapay.com/frontporch/donate" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Donate on Liberapay →
+      </a>
+    </section>
+
+    <section>
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        What we include
+      </h2>
+      <ul style="color:var(--muted);font-size:0.9rem;line-height:2;padding-left:1.25rem;">
+        <li><strong style="color:var(--text);">News:</strong> editorially independent outlets with a public interest focus</li>
+        <li><strong style="color:var(--text);">Resources:</strong> practical, freely accessible guides, tools, and archives</li>
+        <li><strong style="color:var(--text);">Mutual aid:</strong> active networks with a real web presence</li>
+        <li><strong style="color:var(--text);">DIY/Skills:</strong> genuinely useful, accessible practical knowledge</li>
+      </ul>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:1rem;">
+        We don't have a strict ideological checklist, but this project skews toward grassroots,
+        worker-centered, and community-powered sources. Corporate media, think tanks funded by
+        billionaires, and paywalled content generally don't belong here.
+      </p>
+    </section>
+
+  </div>
+</Layout>

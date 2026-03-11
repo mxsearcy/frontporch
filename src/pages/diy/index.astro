@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ResourceCard from '../../components/ResourceCard.astro';
+import { loadResources, groupByCategory } from '../../lib/resources';
+
+const resources = loadResources('diy');
+const byCategory = groupByCategory(resources);
+const categories = Object.keys(byCategory).sort();
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+---
+
+<Layout title="DIY & Skills" section="diy">
+  <SectionHeader title="DIY &amp; Skills" />
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:2rem;">
+    {categories.map(cat => (
+      <a href={`#${slugify(cat)}`} class="source-pill">{cat}</a>
+    ))}
+  </div>
+
+  <div class="space-y-12">
+    {categories.map(cat => (
+      <section id={slugify(cat)}>
+        <p class="subsection-heading">{cat}</p>
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {byCategory[cat].map(r => (
+            <ResourceCard title={r.title} url={r.url} description={r.description} category={r.category} type={r.type} tags={r.tags} />
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</Layout>

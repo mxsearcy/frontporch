@@ -1,0 +1,274 @@
+# ── Independent ────────────────────────────────────────────────────────────
+- id: democracy-now
+  name: Democracy Now!
+  url: https://www.democracynow.org
+  rss: https://www.democracynow.org/democracynow.rss
+  description: Independent global news
+  subsection: Independent
+  tags: [news, politics, international]
+
+- id: the-intercept
+  name: The Intercept
+  url: https://theintercept.com
+  rss: https://theintercept.com/feed/?rss
+  description: Adversarial journalism on power, politics, and national security
+  subsection: Independent
+  tags: [news, investigative, politics]
+
+- id: jacobin
+  name: Jacobin
+  url: https://jacobin.com
+  rss: https://jacobin.com/feed/
+  description: Socialist perspective on politics, economics, and culture
+  subsection: Independent
+  tags: [news, socialist, politics]
+
+- id: in-these-times
+  name: In These Times
+  url: https://inthesetimes.com
+  rss: https://inthesetimes.com/rss
+  description: Progressive news and commentary since 1976
+  subsection: Independent
+  tags: [news, progressive, labor]
+
+- id: truthout
+  name: Truthout
+  url: https://truthout.org
+  rss: https://truthout.org/feed/
+  description: Independent progressive news and analysis
+  subsection: Independent
+  tags: [news, progressive, politics]
+
+- id: labor-notes
+  name: Labor Notes
+  url: https://labornotes.org
+  rss: https://labornotes.org/rss.xml
+  description: The troublemaker's handbook for the labor movement
+  subsection: Independent
+  tags: [news, labor, unions]
+
+- id: real-news-network
+  name: The Real News Network
+  url: https://therealnews.com
+  rss: https://therealnews.com/feed
+  description: Independent journalism for people, not profit
+  subsection: Independent
+  tags: [news, independent, politics]
+
+- id: common-dreams
+  name: Common Dreams
+  url: https://commondreams.org
+  rss: https://www.commondreams.org/rss.xml
+  description: Progressive news and views
+  subsection: Independent
+  tags: [news, progressive]
+
+- id: the-nation
+  name: The Nation
+  url: https://thenation.com
+  rss: https://www.thenation.com/feed/?post_type=article
+  description: Left-liberal commentary and analysis since 1865
+  subsection: Independent
+  tags: [news, politics, progressive]
+
+- id: counterpunch
+  name: CounterPunch
+  url: https://counterpunch.org
+  rss: https://www.counterpunch.org/feed/
+  description: Radical muckraking since 1993
+  subsection: Independent
+  tags: [news, radical, investigative]
+
+- id: black-agenda-report
+  name: Black Agenda Report
+  url: https://blackagendareport.com
+  rss: https://blackagendareport.com/feeds
+  description: News, commentary, and analysis from the Black left
+  subsection: Independent
+  tags: [news, politics, race]
+
+- id: current-affairs
+  name: Current Affairs
+  url: https://currentaffairs.org
+  rss: https://www.currentaffairs.org/news/rss.xml
+  description: Sharp political and cultural commentary
+  subsection: Independent
+  tags: [news, politics, culture]
+
+- id: the-progressive
+  name: The Progressive
+  url: https://progressive.org
+  rss: https://progressive.org/api/rss/content.rss
+  description: Progressive commentary on politics and social justice
+  subsection: Independent
+  tags: [news, progressive, politics]
+
+- id: novara-media
+  name: Novara Media
+  url: https://novaramedia.com
+  rss: https://novaramedia.com/feed/
+  description: UK-based independent left media
+  subsection: Independent
+  tags: [news, uk, socialist, politics]
+
+- id: nacla
+  name: NACLA Report
+  url: https://nacla.org
+  rss: https://nacla.org/feed/
+  description: Reporting on Latin America and the Caribbean
+  subsection: Independent
+  tags: [news, latin-america, international]
+
+- id: africa-is-a-country
+  name: Africa Is a Country
+  url: https://africasacountry.com
+  rss: https://africasacountry.com/feed/
+  description: Politics, culture, and society across the African continent
+  subsection: Independent
+  tags: [news, africa, international, culture]
+
+- id: indian-country-today
+  name: Indian Country Today
+  url: https://ictnews.org
+  rss: https://ictnews.org/feed/
+  description: The nation's leading Native news source
+  subsection: Independent
+  tags: [news, indigenous, politics]
+
+- id: al-jazeera
+  name: Al Jazeera
+  url: https://www.aljazeera.com
+  rss: https://www.aljazeera.com/xml/rss/all.xml
+  description: International news with a non-Western perspective
+  subsection: Independent
+  tags: [news, international, politics]
+
+- id: prism-reports
+  name: Prism Reports
+  url: https://prismreports.org
+  rss: https://prismreports.org/feed/
+  description: Reporting by and for communities of color
+  subsection: Independent
+  tags: [news, race, investigative]
+
+- id: more-perfect-union
+  name: More Perfect Union
+  url: https://perfectunion.us
+  rss: https://perfectunion.us/feed/
+  description: Worker-centered journalism on labor and class
+  subsection: Independent
+  tags: [news, labor, unions]
+
+- id: the-lens-nola
+  name: The Lens (New Orleans)
+  url: https://thelensnola.org
+  rss: https://thelensnola.org/feed/
+  description: Nonprofit investigative journalism for New Orleans
+  subsection: Independent
+  tags: [news, local, investigative]
+
+- id: mississippi-free-press
+  name: Mississippi Free Press
+  url: https://mississippifreepress.org
+  rss: https://mississippifreepress.org/feed/
+  description: Fearless journalism from Mississippi
+  subsection: Independent
+  tags: [news, local, race, investigative]
+
+- id: defector
+  name: Defector
+  url: https://defector.com
+  rss: https://defector.com/feed
+  description: Worker-owned sports and culture media
+  subsection: Independent
+  tags: [news, sports, culture, worker-owned]
+
+- id: labor-press
+  name: Labor Press
+  url: https://laborpress.org
+  rss: https://laborpress.org/feed/
+  description: Union news and worker organizing coverage
+  subsection: Independent
+  tags: [news, labor, unions]
+
+# ── Movement Archives ──────────────────────────────────────────────────────
+- id: portside
+  name: Portside
+  url: https://portside.org
+  rss: https://portside.org/rss.xml
+  description: News, analysis, and culture from the left — with deep historical context
+  subsection: Movement Archives
+  tags: [news, socialist, culture, history]
+
+- id: mr-online
+  name: MR Online
+  url: https://mronline.org
+  rss: https://mronline.org/feed/
+  description: Monthly Review online — socialist analysis of global capitalism
+  subsection: Movement Archives
+  tags: [news, socialist, international, theory]
+
+- id: dissent-magazine
+  name: Dissent Magazine
+  url: https://www.dissentmagazine.org
+  rss: https://www.dissentmagazine.org/feed
+  description: Left-democratic politics and culture since 1954
+  subsection: Movement Archives
+  tags: [news, socialist, culture, history]
+
+- id: verso-blog
+  name: Verso Blog
+  url: https://www.versobooks.com/blogs/news
+  rss: https://www.versobooks.com/blogs/news.atom
+  description: Political analysis from Verso Books authors
+  subsection: Movement Archives
+  tags: [news, socialist, theory]
+
+- id: spectre-journal
+  name: Spectre Journal
+  url: https://spectrejournal.com
+  rss: https://spectrejournal.com/feed/
+  description: Marxist theory and politics
+  subsection: Movement Archives
+  tags: [news, socialist, theory]
+
+- id: tribune-uk
+  name: Tribune
+  url: https://tribunemag.co.uk
+  rss: https://tribunemag.co.uk/feed
+  description: UK socialist magazine since 1937
+  subsection: Movement Archives
+  tags: [news, uk, socialist, history]
+
+# ── Policy Watch ───────────────────────────────────────────────────────────
+- id: inside-climate-news
+  name: Inside Climate News
+  url: https://insideclimatenews.org
+  rss: https://insideclimatenews.org/feed/
+  description: Pulitzer Prize-winning climate journalism
+  subsection: Policy Watch
+  tags: [news, environment, investigative]
+
+- id: grist
+  name: Grist
+  url: https://grist.org
+  rss: https://grist.org/feed/
+  description: Independent climate and environmental justice news
+  subsection: Policy Watch
+  tags: [news, environment, climate]
+
+- id: earther
+  name: Earther
+  url: https://earther.gizmodo.com
+  rss: https://earther.gizmodo.com/rss
+  description: Climate and environment news
+  subsection: Policy Watch
+  tags: [news, environment, climate]
+
+- id: level-news
+  name: Level News
+  url: https://levelnews.org
+  rss: https://levelnews.org/feed/
+  description: News and analysis for people of color
+  subsection: Policy Watch
+  tags: [news, race, politics]

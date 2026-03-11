@@ -1,0 +1,34 @@
+- title: "Tenants Together (California)"
+  url: https://www.tenantstogether.org/resources
+  description: Tenant rights resources, guides on rent control, eviction defense, and how to organize your building.
+  category: Legal & Rights
+  type: guide
+  tags: [housing, tenant-rights, organizing]
+
+- title: "National Bail Fund Network"
+  url: https://www.nationalbailfund.org/find-a-fund
+  description: Directory of community bail funds across the US. Find a fund in your area or learn how to start one.
+  category: Legal & Rights
+  type: tool
+  tags: [bail, criminal-justice, directory]
+
+- title: "Know Your Rights (ACLU)"
+  url: https://www.aclu.org/know-your-rights
+  description: Plain-language guides on your rights during protests, police encounters, at borders, and in the workplace.
+  category: Legal & Rights
+  type: guide
+  tags: [rights, police, protest, immigration]
+
+- title: "Workerscenter.org Resources"
+  url: https://www.nelp.org/workers-rights-resources/
+  description: National Employment Law Project's guides on minimum wage, overtime, misclassification, and worker rights.
+  category: Legal & Rights
+  type: guide
+  tags: [labor, worker-rights, wages]
+
+- title: "Law for Black Lives"
+  url: https://www.law4blacklives.org/resources
+  description: Legal resources, know-your-rights guides, and movement lawyering tools centering Black liberation.
+  category: Legal & Rights
+  type: guide
+  tags: [rights, race, police, protest]

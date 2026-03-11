@@ -1,0 +1,48 @@
+- title: "Beautiful Trouble: A Toolbox for Revolution"
+  url: https://beautifultrouble.org
+  description: Practical guide to creative activism and direct action — tactics, principles, and case studies from movements worldwide.
+  category: Organizing
+  type: guide
+  tags: [direct-action, tactics, creativity]
+
+- title: "Seeds for Change: Organizing Guides"
+  url: https://seedsforchange.org.uk/resources
+  description: Free guides on consensus decision-making, facilitation, campaign strategy, and group dynamics.
+  category: Organizing
+  type: guide
+  tags: [consensus, facilitation, strategy]
+
+- title: "Organizing for Power (Labor Notes)"
+  url: https://labornotes.org/organizing
+  description: Practical resources for building power in your workplace — one-on-ones, mapping, committee structure, contract campaigns.
+  category: Organizing
+  type: guide
+  tags: [labor, workplace, unions]
+
+- title: "Midwest Academy Strategy Chart"
+  url: https://www.midwestacademy.com/strategy-chart/
+  description: A foundational campaign planning tool — goals, constituents, targets, tactics, and resources on one page.
+  category: Organizing
+  type: tool
+  tags: [strategy, campaign, planning]
+
+- title: "Training for Change"
+  url: https://www.trainingforchange.org/training_tools/
+  description: Free workshop tools, facilitation guides, and training curricula for social change organizers.
+  category: Organizing
+  type: guide
+  tags: [facilitation, workshops, training]
+
+- title: "Highlander Research and Education Center"
+  url: https://highlandercenter.org/resources/
+  description: Resources from one of the oldest popular education centers in the US, rooted in the civil rights and labor movements.
+  category: Organizing
+  type: archive
+  tags: [popular-education, history, civil-rights]
+
+- title: "Mutual Aid: Building Solidarity During This Crisis (and the Next)"
+  url: https://www.versobooks.com/books/3713-mutual-aid
+  description: Dean Spade's primer on mutual aid as a political practice — what it is, how it works, and how to start.
+  category: Organizing
+  type: book
+  tags: [mutual-aid, solidarity, theory]

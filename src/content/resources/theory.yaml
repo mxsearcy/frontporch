@@ -1,0 +1,27 @@
+- title: "Marxists Internet Archive"
+  url: https://marxists.org
+  description: The world's largest free archive of Marxist, anarchist, and socialist writing — thousands of texts searchable online.
+  category: Theory & History
+  type: archive
+  tags: [marxism, theory, history, anarchism]
+
+- title: "Anarchist Library"
+  url: https://theanarchistlibrary.org
+  description: Massive archive of anarchist and anti-authoritarian texts, manifestos, and essays in many languages.
+  category: Theory & History
+  type: archive
+  tags: [anarchism, theory, history]
+
+- title: "Libcom Library"
+  url: https://libcom.org/library
+  description: Articles and books on labor history, class struggle, and libertarian communism.
+  category: Theory & History
+  type: archive
+  tags: [labor-history, communism, class]
+
+- title: "Haymarket Books"
+  url: https://www.haymarketbooks.org
+  description: Radical, independent publisher with free excerpts and low-cost ebooks on movement history and theory.
+  category: Theory & History
+  type: book
+  tags: [publishing, movement-history, theory]

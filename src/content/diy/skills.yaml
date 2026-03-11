@@ -1,0 +1,108 @@
+# ── Food Sovereignty ───────────────────────────────────────────────────────
+- title: Appropedia
+  url: https://www.appropedia.org
+  description: Sustainability wiki with thousands of articles on permaculture, urban farming, water systems, and appropriate technology.
+  category: Food Sovereignty
+  type: archive
+  tags: [permaculture, technology, sustainability, wiki]
+
+- title: Homesteaders of America
+  url: https://homesteadersofamerica.com/resources/
+  description: Guides on small-scale farming, food preservation, animal husbandry, and land stewardship.
+  category: Food Sovereignty
+  type: guide
+  tags: [farming, food-preservation, animals]
+
+- title: "Seed Savers Exchange"
+  url: https://www.seedsavers.org/education
+  description: Guides on seed saving, seed storage, and preserving heirloom varieties. Includes a seed library network.
+  category: Food Sovereignty
+  type: guide
+  tags: [seeds, farming, food-sovereignty]
+
+- title: "Urban Farming Guys"
+  url: https://theurbanfarmingguys.com
+  description: Practical video and written guides on urban farming, aquaponics, and food production in small spaces.
+  category: Food Sovereignty
+  type: guide
+  tags: [urban-farming, aquaponics, food]
+
+# ── Hardware & Repair ──────────────────────────────────────────────────────
+- title: "iFixit"
+  url: https://www.ifixit.com
+  description: Free repair guides for electronics, appliances, and more. Central resource for the Right to Repair movement.
+  category: Hardware & Repair
+  type: guide
+  tags: [repair, electronics, right-to-repair]
+
+- title: "Repair Café International"
+  url: https://www.repaircafe.org/en/
+  description: Find a local repair café or start one — community spaces where volunteers help fix electronics, clothing, and furniture.
+  category: Hardware & Repair
+  type: tool
+  tags: [repair, community, electronics]
+
+- title: "Practical Action Technical Briefs"
+  url: https://practicalaction.org/knowledge-centre/
+  description: Free technical guides on sustainable building, water and sanitation, food processing, and energy.
+  category: Hardware & Repair
+  type: guide
+  tags: [building, water, energy, food]
+
+- title: "Right to Repair Coalition"
+  url: https://www.repair.org
+  description: Advocacy, legislation tracker, and resources for the Right to Repair movement.
+  category: Hardware & Repair
+  type: tool
+  tags: [right-to-repair, policy, advocacy]
+
+# ── Street Med ─────────────────────────────────────────────────────────────
+- title: "Riot Medicine"
+  url: https://riotmedicine.net
+  description: Free book on street medic skills for demonstrations — triage, trauma, crowd medicine, and harm reduction.
+  category: Street Med
+  type: book
+  tags: [medic, first-aid, demonstrations]
+
+- title: "Street Medic Wiki"
+  url: https://wiki.protests.net/Street_medic
+  description: Community-maintained wiki for street medics covering supplies, protocols, and training resources.
+  category: Street Med
+  type: archive
+  tags: [medic, first-aid, protest]
+
+- title: "NEXT Distro: Harm Reduction"
+  url: https://nextdistro.org
+  description: Platform connecting people to harm reduction resources, supplies, and services across the country.
+  category: Street Med
+  type: tool
+  tags: [harm-reduction, health, community]
+
+# ── Decentralized Communication ────────────────────────────────────────────
+- title: "Briar (Decentralized Messenger)"
+  url: https://briarproject.org
+  description: Encrypted, peer-to-peer messaging that works without internet via Bluetooth or WiFi — built for activists.
+  category: Decentralized Communication
+  type: tool
+  tags: [communication, encrypted, decentralized, offline]
+
+- title: "Meshtastic"
+  url: https://meshtastic.org
+  description: Open-source, off-grid mesh radio network for community communication without internet infrastructure.
+  category: Decentralized Communication
+  type: tool
+  tags: [mesh-network, radio, offline, decentralized]
+
+- title: "Zine Library (Barnard)"
+  url: https://zines.barnard.edu
+  description: Searchable digital archive of thousands of zines on politics, health, community organizing, and DIY culture.
+  category: Decentralized Communication
+  type: archive
+  tags: [zines, diy, archive, politics]
+
+- title: "Internet Archive"
+  url: https://archive.org
+  description: Free digital library of books, films, music, and software. Includes out-of-print homesteading manuals and technical how-tos.
+  category: Decentralized Communication
+  type: archive
+  tags: [archive, books, zines, preservation]

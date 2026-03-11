@@ -1,0 +1,212 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import FeedCard from '../../components/FeedCard.astro';
+import { loadSources, fetchAllFeeds } from '../../lib/feeds';
+import type { FeedItem } from '../../lib/feeds';
+
+const sources = loadSources('news.yaml');
+const allItems = await fetchAllFeeds(sources, 10);
+
+function sortItems(items: FeedItem[]): FeedItem[] {
+  return [...items].sort((a, b) => {
+    const da = a.date ? new Date(a.date).getTime() : 0;
+    const db = b.date ? new Date(b.date).getTime() : 0;
+    if (db !== da) return db - da;
+    const wa = (a.title.split(' ')[0] ?? '').toLowerCase();
+    const wb = (b.title.split(' ')[0] ?? '').toLowerCase();
+    return wa < wb ? -1 : wa > wb ? 1 : 0;
+  });
+}
+
+const INITIAL_LIMIT = 11;
+const subsectionOrder = ['Independent', 'Movement Archives', 'Policy Watch'];
+
+const bySubsection: Record<string, FeedItem[]> = {};
+for (const item of allItems) {
+  const key = item.subsection ?? 'Independent';
+  if (!bySubsection[key]) bySubsection[key] = [];
+  bySubsection[key].push(item);
+}
+
+const processed: Record<string, { shown: FeedItem[], extra: FeedItem[] }> = {};
+for (const sub of subsectionOrder) {
+  const sorted = sortItems(bySubsection[sub] ?? []);
+  const seen = new Set<string>();
+  const firstPerSource: FeedItem[] = [];
+  const additionalPerSource: FeedItem[] = [];
+  for (const item of sorted) {
+    if (!seen.has(item.sourceId)) {
+      seen.add(item.sourceId);
+      firstPerSource.push(item);
+    } else {
+      additionalPerSource.push(item);
+    }
+  }
+  processed[sub] = {
+    shown: firstPerSource.slice(0, INITIAL_LIMIT),
+    extra: [...firstPerSource.slice(INITIAL_LIMIT), ...additionalPerSource],
+  };
+}
+
+const subsectionDescriptions: Record<string, string> = {
+  'Independent': 'Labor-focused reporting, grassroots updates, and community journalism.',
+  'Movement Archives': 'Radical history, theory, and zine libraries — context for today.',
+  'Policy Watch': 'Community-led research and accountability reporting.',
+};
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+---
+
+<Layout title="News" section="news">
+  <SectionHeader title="News" />
+
+  <div id="source-filters" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.75rem;">
+    {sources.map(s => (
+      <button class="source-pill filter-btn" data-filter-id={s.id} type="button">{s.name}</button>
+    ))}
+  </div>
+
+  {allItems.length === 0 ? (
+    <p style="color:var(--muted);padding:2rem 0;">Feeds load at build time.</p>
+  ) : (
+    <div class="space-y-12">
+      {subsectionOrder.filter(sub => processed[sub]?.shown.length || processed[sub]?.extra.length).map(sub => {
+        const { shown, extra } = processed[sub];
+        const gridId = `grid-${slugify(sub)}`;
+        return (
+          <section data-subsection={sub}>
+            <div style="margin-bottom:1rem;">
+              <p class="subsection-heading">{sub}</p>
+              {subsectionDescriptions[sub] && (
+                <p style="font-size:0.85rem;color:var(--muted);margin-top:0.25rem;">{subsectionDescriptions[sub]}</p>
+              )}
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" id={gridId}>
+              {shown.map(item => (
+                <div class="card-wrap" data-source-id={item.sourceId}>
+                  <FeedCard title={item.title} url={item.url} source={item.source}
+                    sourceUrl={item.sourceUrl} date={item.date} summary={item.summary} tags={item.tags} />
+                </div>
+              ))}
+              {extra.length > 0 && (
+                <div class="load-more-wrap" data-grid={gridId}>
+                  <button class="load-more-btn" type="button" data-grid={gridId}>load more</button>
+                </div>
+              )}
+              {extra.map(item => (
+                <div class="card-wrap extra-item" data-source-id={item.sourceId} style="display:none">
+                  <FeedCard title={item.title} url={item.url} source={item.source}
+                    sourceUrl={item.sourceUrl} date={item.date} summary={item.summary} tags={item.tags} />
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  )}
+</Layout>
+
+<style>
+  .filter-btn {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.1s, color 0.1s, background 0.1s;
+  }
+  .filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .load-more-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .load-more-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0.5rem;
+    transition: color 0.1s;
+  }
+  .load-more-btn:hover { color: var(--accent); }
+</style>
+
+<script is:inline>
+  (function () {
+    var activeFilters = new Set();
+
+    function applyFilters() {
+      var hasFilter = activeFilters.size > 0;
+
+      document.querySelectorAll('.card-wrap').forEach(function (wrap) {
+        var sid = wrap.getAttribute('data-source-id');
+        var isExtra = wrap.classList.contains('extra-item');
+        if (hasFilter) {
+          // Filter active: show ALL cards matching any selected source
+          wrap.style.display = activeFilters.has(sid) ? '' : 'none';
+        } else {
+          // No filter: extras that weren't explicitly load-more revealed go back to hidden
+          if (isExtra && !wrap.dataset.revealed) {
+            wrap.style.display = 'none';
+          } else {
+            wrap.style.display = '';
+          }
+        }
+      });
+
+      // Load-more: hidden when any filter active; restored when cleared (if unrevealed extras exist)
+      document.querySelectorAll('.load-more-wrap').forEach(function (lmw) {
+        if (hasFilter) {
+          lmw.style.display = 'none';
+        } else {
+          var gridId = lmw.getAttribute('data-grid');
+          var grid = document.getElementById(gridId);
+          var hasUnrevealed = false;
+          if (grid) {
+            grid.querySelectorAll('.extra-item').forEach(function (e) {
+              if (!e.dataset.revealed) hasUnrevealed = true;
+            });
+          }
+          lmw.style.display = hasUnrevealed ? '' : 'none';
+        }
+      });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var fid = btn.getAttribute('data-filter-id');
+        if (activeFilters.has(fid)) {
+          activeFilters.delete(fid);
+          btn.classList.remove('active');
+        } else {
+          activeFilters.add(fid);
+          btn.classList.add('active');
+        }
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll('.load-more-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var gridId = btn.getAttribute('data-grid');
+        var grid = document.getElementById(gridId);
+        if (!grid) return;
+        grid.querySelectorAll('.card-wrap.extra-item').forEach(function (wrap) {
+          wrap.dataset.revealed = 'true';
+          wrap.style.display = '';
+        });
+        var lmw = grid.querySelector('.load-more-wrap');
+        if (lmw) lmw.style.display = 'none';
+      });
+    });
+  })();
+</script>

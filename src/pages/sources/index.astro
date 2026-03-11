@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { loadSources } from '../../lib/feeds';
+
+const newsSources = loadSources('news.yaml');
+---
+
+<Layout title="Sources" section="sources">
+  <SectionHeader title="Sources" />
+
+  <section style="margin-bottom:2.5rem;">
+    <h2 class="font-serif" style="font-size:1.2rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+      News &amp; Analysis
+    </h2>
+    <div class="grid gap-3 sm:grid-cols-2">
+      {newsSources.map(s => (
+        <div class="card">
+          <div class="flex items-start justify-between gap-2" style="margin-bottom:0.3rem;">
+            <a href={s.url} target="_blank" rel="noopener noreferrer" style="font-weight:500;color:var(--text);text-decoration:none;" class="card-title-link">
+              {s.name}
+            </a>
+            <a href={s.rss} target="_blank" rel="noopener noreferrer" style="font-size:0.7rem;color:var(--label);flex-shrink:0;">RSS ↗</a>
+          </div>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;">{s.description}</p>
+          <div class="flex flex-wrap gap-1">
+            {s.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div style="padding:1.25rem;border:1px solid var(--border);">
+    <p style="font-size:0.85rem;color:var(--muted);">
+      To propose a source, see the <a href="/contribute">contribute guide</a>.
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .card-title-link:hover { color: var(--accent); }
+</style>
