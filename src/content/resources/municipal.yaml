@@ -12,22 +12,22 @@
   type: guide
   tags: [participatory-budgeting, democracy, local]
 
-- title: "Community Land Trust Network"
-  url: https://cltnetwork.org/resources/
+- title: "Grounded Solutions Network"
+  url: https://groundedsolutions.org
   description: How-to guides and legal resources for establishing community land trusts to permanently decommodify housing.
   category: Co-ops & Land
   type: guide
   tags: [housing, land-trust, community-ownership]
 
-- title: "Democracy Collaborative"
-  url: https://democracycollaborative.org/content/resources
-  description: Research and resources on community wealth building, worker cooperatives, and local democratic economies.
+- title: "Community Land Trusts (UK)"
+  url: https://www.communitylandtrusts.org.uk
+  description: National CLT Network in the UK — guidance, case studies, and tools for community-led affordable housing.
   category: Co-ops & Land
   type: guide
-  tags: [cooperatives, community-wealth, economics]
+  tags: [housing, land-trust, community-ownership, uk]
 
 - title: "USFWC: Worker Co-op Resources"
-  url: https://www.usfwc.org/resources/
+  url: https://www.usworker.coop/resources/
   description: US Federation of Worker Cooperatives — templates, legal guides, and toolkits for starting or converting to a worker co-op.
   category: Co-ops & Land
   type: tool

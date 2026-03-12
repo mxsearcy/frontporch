@@ -265,10 +265,3 @@
   subsection: Policy Watch
   tags: [news, environment, climate]
 
-- id: level-news
-  name: Level News
-  url: https://levelnews.org
-  rss: https://levelnews.org/feed/
-  description: News and analysis for people of color
-  subsection: Policy Watch
-  tags: [news, race, politics]
