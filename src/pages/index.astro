@@ -5,6 +5,9 @@ import ResourceCard from '../components/ResourceCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { loadSources, fetchAllFeeds } from '../lib/feeds';
 import { loadResources } from '../lib/resources';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { parse as parseYaml } from 'yaml';
 
 const newsSources = loadSources('news.yaml');
 const latestNews = (await fetchAllFeeds(newsSources, 3)).slice(0, 6);
@@ -14,6 +17,11 @@ const featuredResources = allResources.slice(0, 4);
 
 const diyResources = loadResources('diy');
 const featuredDiy = diyResources.slice(0, 3);
+
+const allNetworks = parseYaml(readFileSync(join(process.cwd(), 'src/content/networks/mutual-aid.yaml'), 'utf-8')) as Array<{
+  name: string; url: string; description: string; region: string; subsection: string; tags: string[];
+}>;
+const featuredNetworks = allNetworks.slice(0, 4);
 ---
 
 <Layout>
@@ -280,13 +288,12 @@ const featuredDiy = diyResources.slice(0, 3);
       </div>
     </section>
 
-    <section>
-      <div style="padding:2rem;border:1px solid var(--border);">
-        <h2 class="font-serif" style="font-size:1.5rem;color:var(--text);margin-bottom:0.75rem;">Mutual Aid</h2>
-        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.25rem;max-width:36rem;">
-          Networks and directories for direct community support.
-        </p>
-        <a href="/mutual-aid" class="btn">Browse networks →</a>
+    <section class="mb-14">
+      <SectionHeader title="Mutual Aid" href="/mutual-aid" linkLabel="All networks" />
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {featuredNetworks.map(n => (
+          <ResourceCard title={n.name} url={n.url} description={n.description} category={n.region} tags={n.tags} />
+        ))}
       </div>
     </section>
 
