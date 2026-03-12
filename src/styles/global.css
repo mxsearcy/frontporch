@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Color tokens ─────────────────────────────────────── */
+:root {
+  --bg:         #f2ede6;
+  --surface:    #faf7f3;
+  --border:     #d8cfc4;
+  --border-dim: #ede7df;
+  --text:       #302820;
+  --muted:      #5c4a3d;
+  --label:      #6a5c52;
+  --accent:     #c0391a;
+  --accent-hi:  #a02e14;
+  --tag-bg:     #ede6dc;
+  --tag-text:   #4a3c30;
+  --nav-bg:     #faf7f3;
+  --nav-border: #d0c8be;
+}
+
+html.dark {
+  --bg:         #141c24;
+  --surface:    #1c2430;
+  --border:     #2a3440;
+  --border-dim: #222c38;
+  --text:       #bcc8c8;
+  --muted:      #7a9098;
+  --label:      #7aaa82;
+  --accent:     #e05530;
+  --accent-hi:  #f0663f;
+  --tag-bg:     #1c2830;
+  --tag-text:   #88a4a8;
+  --nav-bg:     #0e1620;
+  --nav-border: #2a3440;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--text);
+    @apply antialiased;
+    transition: background-color 0.55s ease-in-out, color 0.55s ease-in-out;
+    line-height: 1.65;
+    letter-spacing: 0.012em;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.1s;
+  }
+  a:hover { color: var(--accent-hi); }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  :focus:not(:focus-visible) { outline: none; }
+}
+
+/* ── Components ───────────────────────────────────────── */
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border-dim);
+    border-left: 2px solid var(--border);
+    padding: 1rem;
+    transition: border-left-color 0.15s;
+  }
+  .card:hover { border-left-color: var(--accent); }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--label);
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.15rem 0.45rem;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    letter-spacing: 0.02em;
+  }
+
+  .subsection-heading {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  details > summary.subsection-heading {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details > summary.subsection-heading::-webkit-details-marker { display: none; }
+  details > summary.subsection-heading::marker { display: none; }
+  details > summary.subsection-heading::after {
+    content: '▾';
+    font-size: 0.8em;
+    opacity: 0.5;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+  details:not([open]) > summary.subsection-heading::after {
+    content: '▸';
+  }
+
+  .btn {
+    @apply px-4 py-2 text-sm font-medium transition-colors inline-block;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .btn:hover { color: var(--text); border-color: var(--accent); }
+
+  .btn-primary {
+    @apply px-4 py-2 text-sm font-medium transition-colors inline-block;
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: var(--accent-hi); border-color: var(--accent-hi); color: #fff; }
+
+  .source-pill {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: border-color 0.1s, color 0.1s;
+  }
+  .source-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  .nav-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 0.35rem 0.7rem;
+    transition: color 0.1s;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--text); }
+  .nav-link.active { border-bottom: 2px solid var(--accent); }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0.5rem;
+    z-index: 999;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    color: var(--text);
+    border: 2px solid var(--accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.1s;
+  }
+  .skip-link:focus { top: 0.5rem; outline: none; }
+}

@@ -1,0 +1,294 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FeedCard from '../components/FeedCard.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { loadSources, fetchAllFeeds } from '../lib/feeds';
+import { loadResources } from '../lib/resources';
+
+const newsSources = loadSources('news.yaml');
+const latestNews = (await fetchAllFeeds(newsSources, 3)).slice(0, 6);
+
+const allResources = loadResources('resources');
+const featuredResources = allResources.slice(0, 4);
+
+const diyResources = loadResources('diy');
+const featuredDiy = diyResources.slice(0, 3);
+---
+
+<Layout>
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 3rem;">
+    <h1
+      class="font-serif"
+      style="font-size:clamp(3.2rem,9vw,6rem);line-height:1;color:var(--text);letter-spacing:-0.03em;margin-bottom:1.25rem;"
+    >
+      Frontporch
+    </h1>
+    <p style="font-size:clamp(0.72rem,1.65vw,1.05rem);color:var(--muted);white-space:nowrap;line-height:1.7;margin-bottom:2.25rem;">
+      A place for independent news, organizing resources, practical DIY skills and mutual aid networks
+    </p>
+    <nav aria-label="Site sections" style="display:flex;flex-wrap:wrap;gap:0.65rem;justify-content:center;">
+      <a href="/news" class="btn-primary" style="font-size:0.95rem;padding:0.55rem 1.4rem;">News</a>
+      <a href="/resources" class="btn" style="font-size:0.95rem;padding:0.55rem 1.4rem;">Resources</a>
+      <a href="/mutual-aid" class="btn" style="font-size:0.95rem;padding:0.55rem 1.4rem;">Mutual Aid</a>
+      <a href="/diy" class="btn" style="font-size:0.95rem;padding:0.55rem 1.4rem;">DIY &amp; Skills</a>
+    </nav>
+  </section>
+
+  <!-- ── Porch Illustration ─────────────────────────────── -->
+  <div aria-hidden="true" style="width:100%;overflow:hidden;margin-bottom:3.5rem;">
+    <svg
+      viewBox="0 0 900 240"
+      xmlns="http://www.w3.org/2000/svg"
+      style="width:100%;display:block;"
+      role="img"
+      aria-label="A rocking chair on a front porch with rolling hills in the background"
+    >
+      <defs>
+        <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffdf60" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#ffdf60" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <style>
+        .fp-sky    { fill: #e6ddd0; transition: fill 0.65s ease-in-out }
+        .fp-cloud  { fill: #f5f0ea; transition: fill 0.65s ease-in-out, opacity 0.65s }
+        .fp-hfar   { fill: #c8d4b8; transition: fill 0.65s ease-in-out }
+        .fp-hnear  { fill: #b2c89c; transition: fill 0.65s ease-in-out }
+        .fp-yard   { fill: #a4bc88; transition: fill 0.65s ease-in-out }
+        .fp-deck   { fill: #d2c098; transition: fill 0.65s ease-in-out }
+        .fp-plk    { stroke: #b8a870; stroke-width: .8; fill: none }
+        .fp-fascia { fill: #c2aa68; transition: fill 0.65s ease-in-out }
+        .fp-post   { fill: #c8b478; transition: fill 0.65s ease-in-out }
+        .fp-beam   { fill: #c0a860; transition: fill 0.65s ease-in-out }
+        .fp-rail   { stroke: #b09840; stroke-width: 1.5; fill: none }
+        .fp-bal    { stroke: #b8a858; stroke-width: 1; fill: none }
+        .fp-wd     { fill: #c09848; stroke: #6b4e22; stroke-width: 1.5 }
+        .fp-wdsl   { stroke: #7a5e2e; stroke-width: 1.2; fill: none }
+        .fp-rkr    { stroke: #5a3e1c; stroke-width: 2.5; fill: none; stroke-linecap: round }
+        .fp-leg    { stroke: #6b4e22; stroke-width: 2; fill: none }
+
+        /* Sun elements — positioned, then slide down in dark mode */
+        .fp-sun-halo {
+          fill: #ffe080;
+          opacity: 0.28;
+          transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out;
+        }
+        .fp-sun {
+          fill: #ffd030;
+          transition: transform 0.75s ease-in-out, fill 0.75s ease-in-out;
+        }
+
+        /* Horizon glow — fades in during dark mode */
+        .fp-glow {
+          fill: #c83018;
+          opacity: 0;
+          transition: opacity 0.75s ease-in-out;
+        }
+
+        /* Dark mode overrides */
+        html.dark .fp-sky    { fill: #0e1828 }
+        html.dark .fp-cloud  { fill: #1a2840; opacity: .4 }
+        html.dark .fp-hfar   { fill: #142018 }
+        html.dark .fp-hnear  { fill: #0e1812 }
+        html.dark .fp-yard   { fill: #0a1410 }
+        html.dark .fp-deck   { fill: #161208 }
+        html.dark .fp-fascia { fill: #181408 }
+        html.dark .fp-post   { fill: #1c180a }
+        html.dark .fp-beam   { fill: #181406 }
+        html.dark .fp-rail   { stroke: #242010 }
+        html.dark .fp-bal    { stroke: #201c0c }
+        html.dark .fp-wd     { fill: #241c0c; stroke: #6a5428 }
+        html.dark .fp-wdsl   { stroke: #5a4422 }
+        html.dark .fp-rkr    { stroke: #5c4828 }
+        html.dark .fp-leg    { stroke: #6a5030 }
+
+        html.dark .fp-sun-halo {
+          fill: #e04010;
+          opacity: 0.12;
+          transform: translateY(68px);
+        }
+        html.dark .fp-sun {
+          fill: #d04010;
+          transform: translateY(68px);
+        }
+        html.dark .fp-glow { opacity: 0.22 }
+      </style>
+
+      <!-- Sky -->
+      <rect class="fp-sky" width="900" height="240"/>
+
+      <!-- Sun halo (drawn before hills so hills mask it when sun sets) -->
+      <circle class="fp-sun-halo" cx="450" cy="90" r="42"/>
+      <!-- Sun -->
+      <circle class="fp-sun" cx="450" cy="90" r="20"/>
+
+      <!-- Sunset horizon glow (visible only in dark mode) -->
+      <rect class="fp-glow" x="0" y="100" width="900" height="80"/>
+
+      <!-- Clouds -->
+      <ellipse class="fp-cloud" cx="128" cy="42" rx="52" ry="14"/>
+      <ellipse class="fp-cloud" cx="168" cy="33" rx="37" ry="11"/>
+      <ellipse class="fp-cloud" cx="96"  cy="40" rx="28" ry="9"/>
+      <ellipse class="fp-cloud" cx="688" cy="48" rx="50" ry="13"/>
+      <ellipse class="fp-cloud" cx="730" cy="37" rx="34" ry="10"/>
+      <ellipse class="fp-cloud" cx="655" cy="45" rx="27" ry="8"/>
+
+      <!-- Far hills (drawn AFTER sun — masks it when sun descends) -->
+      <path class="fp-hfar" d="M0,138 Q80,110 160,134 Q250,106 340,130 Q420,106 510,128 Q590,108 680,132 Q760,110 840,134 L900,136 L900,165 L0,165 Z"/>
+
+      <!-- Near ground -->
+      <path class="fp-hnear" d="M0,150 Q100,130 210,148 Q320,128 430,146 Q530,128 640,146 Q740,130 840,148 L900,150 L900,178 L0,178 Z"/>
+
+      <!-- Yard -->
+      <rect class="fp-yard" x="0" y="174" width="900" height="18"/>
+
+      <!-- Porch floor -->
+      <rect class="fp-deck" x="0" y="192" width="900" height="48"/>
+      <line class="fp-plk" x1="0" y1="198" x2="900" y2="198"/>
+      <line class="fp-plk" x1="0" y1="204" x2="900" y2="204"/>
+      <line class="fp-plk" x1="0" y1="210" x2="900" y2="210"/>
+      <line class="fp-plk" x1="0" y1="216" x2="900" y2="216"/>
+      <line class="fp-plk" x1="0" y1="222" x2="900" y2="222"/>
+      <line class="fp-plk" x1="0" y1="228" x2="900" y2="228"/>
+      <line class="fp-plk" x1="0" y1="234" x2="900" y2="234"/>
+      <!-- Porch fascia -->
+      <rect class="fp-fascia" x="0" y="189" width="900" height="5"/>
+
+      <!-- Overhead beam -->
+      <rect class="fp-beam" x="72" y="60" width="756" height="12"/>
+
+      <!-- Left post -->
+      <rect class="fp-post" x="76" y="72" width="16" height="122"/>
+      <!-- Right post -->
+      <rect class="fp-post" x="808" y="72" width="16" height="122"/>
+
+      <!-- Left railing -->
+      <line class="fp-rail" x1="92"  y1="148" x2="298" y2="148"/>
+      <line class="fp-rail" x1="92"  y1="180" x2="298" y2="180"/>
+      <line class="fp-bal" x1="103"  y1="148" x2="103"  y2="180"/>
+      <line class="fp-bal" x1="115"  y1="148" x2="115"  y2="180"/>
+      <line class="fp-bal" x1="127"  y1="148" x2="127"  y2="180"/>
+      <line class="fp-bal" x1="139"  y1="148" x2="139"  y2="180"/>
+      <line class="fp-bal" x1="151"  y1="148" x2="151"  y2="180"/>
+      <line class="fp-bal" x1="163"  y1="148" x2="163"  y2="180"/>
+      <line class="fp-bal" x1="175"  y1="148" x2="175"  y2="180"/>
+      <line class="fp-bal" x1="187"  y1="148" x2="187"  y2="180"/>
+      <line class="fp-bal" x1="199"  y1="148" x2="199"  y2="180"/>
+      <line class="fp-bal" x1="211"  y1="148" x2="211"  y2="180"/>
+      <line class="fp-bal" x1="223"  y1="148" x2="223"  y2="180"/>
+      <line class="fp-bal" x1="235"  y1="148" x2="235"  y2="180"/>
+      <line class="fp-bal" x1="247"  y1="148" x2="247"  y2="180"/>
+      <line class="fp-bal" x1="259"  y1="148" x2="259"  y2="180"/>
+      <line class="fp-bal" x1="271"  y1="148" x2="271"  y2="180"/>
+      <line class="fp-bal" x1="283"  y1="148" x2="283"  y2="180"/>
+      <line class="fp-bal" x1="295"  y1="148" x2="295"  y2="180"/>
+
+      <!-- Right railing -->
+      <line class="fp-rail" x1="602" y1="148" x2="808" y2="148"/>
+      <line class="fp-rail" x1="602" y1="180" x2="808" y2="180"/>
+      <line class="fp-bal" x1="602"  y1="148" x2="602"  y2="180"/>
+      <line class="fp-bal" x1="614"  y1="148" x2="614"  y2="180"/>
+      <line class="fp-bal" x1="626"  y1="148" x2="626"  y2="180"/>
+      <line class="fp-bal" x1="638"  y1="148" x2="638"  y2="180"/>
+      <line class="fp-bal" x1="650"  y1="148" x2="650"  y2="180"/>
+      <line class="fp-bal" x1="662"  y1="148" x2="662"  y2="180"/>
+      <line class="fp-bal" x1="674"  y1="148" x2="674"  y2="180"/>
+      <line class="fp-bal" x1="686"  y1="148" x2="686"  y2="180"/>
+      <line class="fp-bal" x1="698"  y1="148" x2="698"  y2="180"/>
+      <line class="fp-bal" x1="710"  y1="148" x2="710"  y2="180"/>
+      <line class="fp-bal" x1="722"  y1="148" x2="722"  y2="180"/>
+      <line class="fp-bal" x1="734"  y1="148" x2="734"  y2="180"/>
+      <line class="fp-bal" x1="746"  y1="148" x2="746"  y2="180"/>
+      <line class="fp-bal" x1="758"  y1="148" x2="758"  y2="180"/>
+      <line class="fp-bal" x1="770"  y1="148" x2="770"  y2="180"/>
+      <line class="fp-bal" x1="782"  y1="148" x2="782"  y2="180"/>
+      <line class="fp-bal" x1="794"  y1="148" x2="794"  y2="180"/>
+      <line class="fp-bal" x1="806"  y1="148" x2="806"  y2="180"/>
+
+      <!-- ════════════════════════════ -->
+      <!--   ROCKING CHAIR (x≈450)    -->
+      <!-- ════════════════════════════ -->
+
+      <!-- Rocker -->
+      <path class="fp-rkr" d="M 395,205 C 412,214 438,217 463,214 C 476,212 490,206 493,200"/>
+
+      <!-- Rear leg -->
+      <line class="fp-leg" x1="412" y1="193" x2="400" y2="207"/>
+      <!-- Front leg -->
+      <line class="fp-leg" x1="468" y1="193" x2="477" y2="207"/>
+
+      <!-- Seat -->
+      <path class="fp-wd" d="M 408,183 L 472,181 L 472,194 L 408,195 Z"/>
+
+      <!-- Front armrest support -->
+      <rect class="fp-wd" x="465" y="169" width="6" height="14"/>
+
+      <!-- Armrest -->
+      <path class="fp-wd" d="M 410,176 L 473,173 L 473,168 L 410,171 Z"/>
+
+      <!-- Chair back -->
+      <path class="fp-wd" d="M 408,195 L 422,194 L 414,134 L 400,135 Z"/>
+
+      <!-- Back slats -->
+      <line class="fp-wdsl" x1="400" y1="184" x2="423" y2="183"/>
+      <line class="fp-wdsl" x1="400" y1="173" x2="422" y2="172"/>
+      <line class="fp-wdsl" x1="400" y1="162" x2="421" y2="161"/>
+      <line class="fp-wdsl" x1="400" y1="151" x2="420" y2="150"/>
+      <line class="fp-wdsl" x1="400" y1="140" x2="415" y2="139"/>
+
+      <!-- Top rail -->
+      <path class="fp-wd" d="M 398,134 L 416,133 L 415,139 L 399,140 Z"/>
+    </svg>
+  </div>
+
+  <!-- ── Content Sections ───────────────────────────────── -->
+  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pb-12">
+
+    <section class="mb-14">
+      <SectionHeader title="News" href="/news" linkLabel="All news" />
+      {latestNews.length > 0 ? (
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {latestNews.map(item => (
+            <FeedCard title={item.title} url={item.url} source={item.source}
+              sourceUrl={item.sourceUrl} date={item.date} summary={item.summary} tags={item.tags} />
+          ))}
+        </div>
+      ) : (
+        <div style="padding:2rem;border:1px solid var(--border-dim);text-align:center;">
+          <p style="color:var(--muted);font-size:0.9rem;">Feeds load at build time.</p>
+        </div>
+      )}
+    </section>
+
+    <section class="mb-14">
+      <SectionHeader title="Organizing Resources" href="/resources" linkLabel="Full library" />
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {featuredResources.map(r => (
+          <ResourceCard title={r.title} url={r.url} description={r.description} category={r.category} type={r.type} tags={r.tags} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <SectionHeader title="DIY &amp; Homesteading" href="/diy" linkLabel="All resources" />
+      <div class="grid gap-3 sm:grid-cols-3">
+        {featuredDiy.map(r => (
+          <ResourceCard title={r.title} url={r.url} description={r.description} category={r.category} type={r.type} tags={r.tags} />
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <div style="padding:2rem;border:1px solid var(--border);">
+        <h2 class="font-serif" style="font-size:1.5rem;color:var(--text);margin-bottom:0.75rem;">Mutual Aid</h2>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.25rem;max-width:36rem;">
+          Networks and directories for direct community support.
+        </p>
+        <a href="/mutual-aid" class="btn">Browse networks →</a>
+      </div>
+    </section>
+
+  </div>
+</Layout>

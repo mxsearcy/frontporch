@@ -1,0 +1,34 @@
+- title: "EFF: Surveillance Self-Defense"
+  url: https://ssd.eff.org
+  description: Electronic Frontier Foundation's step-by-step guides on digital security for activists, journalists, and everyday people.
+  category: Digital Sovereignty
+  type: guide
+  tags: [security, privacy, surveillance]
+
+- title: "Security in a Box"
+  url: https://securityinabox.org
+  description: Digital security tools and tactics for human rights defenders — covers encryption, secure comms, and safe browsing.
+  category: Digital Sovereignty
+  type: guide
+  tags: [security, privacy, encryption]
+
+- title: "FOSS Alternatives (AlternativeTo)"
+  url: https://alternativeto.net/platform/open-source/
+  description: Searchable directory of free and open-source alternatives to proprietary software.
+  category: Digital Sovereignty
+  type: tool
+  tags: [foss, software, privacy]
+
+- title: "Access Now: Digital Security Helpline"
+  url: https://www.accessnow.org/help/
+  description: Free direct digital security assistance for civil society, activists, and journalists under threat.
+  category: Digital Sovereignty
+  type: tool
+  tags: [security, emergency, support]
+
+- title: "Distributed Press"
+  url: https://distributed.press
+  description: Tools and guides for publishing to the decentralized web — IPFS, Hypercore, and community archiving.
+  category: Digital Sovereignty
+  type: tool
+  tags: [decentralized, ipfs, publishing, archiving]

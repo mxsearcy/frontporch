@@ -1,0 +1,93 @@
+# ── Active Networks ────────────────────────────────────────────────────────
+- name: Mutual Aid Hub
+  url: https://www.mutualaidhub.org
+  description: Nationwide directory of mutual aid groups organized by location. Find or start a group near you.
+  region: National
+  subsection: Active Networks
+  tags: [directory, national]
+
+- name: Food Not Bombs
+  url: https://foodnotbombs.net
+  description: Decentralized volunteer network sharing free food and highlighting the need to end poverty.
+  region: International
+  subsection: Active Networks
+  tags: [food, decentralized, international]
+
+- name: Really Really Free Market
+  url: https://reallyreallyfree.org
+  description: Free community events where people share goods, skills, and services with no exchange or barter.
+  region: Various
+  subsection: Active Networks
+  tags: [free-market, community, skills-sharing]
+
+- name: Little Free Pantry
+  url: https://www.littlefreepantry.org
+  description: Community-led network of free neighborhood pantries. Find one near you or build your own.
+  region: National
+  subsection: Active Networks
+  tags: [food, community, neighborhood]
+
+- name: Tool Library Network
+  url: https://localtools.org
+  description: Directory of tool lending libraries across North America — borrow tools instead of buying them.
+  region: National
+  subsection: Active Networks
+  tags: [tools, lending, community]
+
+# ── Direct Action ──────────────────────────────────────────────────────────
+- name: Mutual Aid Disaster Relief
+  url: https://mutualaiddisasterrelief.org
+  description: Grassroots disaster relief network based on solidarity — direct community support without red tape.
+  region: National
+  subsection: Direct Action
+  tags: [disaster-relief, solidarity]
+
+- name: National Domestic Workers Alliance
+  url: https://www.domesticworkers.org
+  description: Organizing domestic workers — nannies, housekeepers, and caregivers — for rights and dignity.
+  region: National
+  subsection: Direct Action
+  tags: [labor, domestic-workers, organizing]
+
+- name: Showing Up for Racial Justice (SURJ)
+  url: https://www.showingupforracialjustice.org/tools-for-organizing.html
+  description: Network of white people organizing in their communities for racial justice, with local chapter resources.
+  region: National
+  subsection: Direct Action
+  tags: [racial-justice, organizing, chapters]
+
+- name: Strike Support Network
+  url: https://strikeforourrights.org/
+  description: Resources and coordination for supporting striking workers — solidarity funds, picket information, supplies.
+  region: National
+  subsection: Direct Action
+  tags: [strikes, labor, solidarity]
+
+# ── Survival ───────────────────────────────────────────────────────────────
+- name: FEMA Community Resources
+  url: https://www.ready.gov/community-emergency-response-teams
+  description: Community Emergency Response Team training and resources — local preparedness outside state institutions.
+  region: National
+  subsection: Survival
+  tags: [emergency, preparedness, community]
+
+- name: Direct Relief Aid Map
+  url: https://cloud.directrelief.org/map/aidmap/?_gl=1*o3y4fv*_gcl_au*MTcyMDUyOTA2NS4xNzczMTkzNDQy*_ga*Njc4MzYyOTI4LjE3NzMxOTM0NDI.*_ga_WYKLEGJW76*czE3NzMxOTM0NDEkbzEkZzEkdDE3NzMxOTM0NDUkajU2JGwwJGg2NTE4NTEyNTY.
+  description: Worldwide aid map from Direct Relief, a humanitarian org dedicated to victims of disasters and the poor.
+  region: International
+  subsection: Survival
+  tags: [disaster, map, real-time]
+
+- name: Direct Relief Healthcare Resources
+  url: https://support.directrelief.org/hc/en-us/articles/360005527093-Can-an-individual-receive-support-from-Direct-Relief
+  description: Individual resources from Direct Relief, a humanitarian org dedicated to victims of disasters and the poor.
+  region: International
+  subsection: Survival
+  tags: [disaster, medical aid, poverty]
+
+- name: NOVAD Community Resources
+  url: https://www.nvoad.org/resources-center/
+  description: Network of volunteer organizations for disaster response — find local groups ready to mobilize.
+  region: National
+  subsection: Survival
+  tags: [disaster, network, preparedness]

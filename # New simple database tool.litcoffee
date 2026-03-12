@@ -1,0 +1,2 @@
+# New simple database tool 
+* Pause, and then create a separate project called "Free Stuff Database" that will replace the Really Really Free Market card on the Mutual Aid page, which currently leads to a parked webpage. Make it STUPID SIMPLE, include submission, regular culling (120 days) of incomplete or not-updated listings, and sortable in the most reasonable ways. The data needs to be scraped and needs to be highly reliable: engineer a novel way to do so without expensive API calls. Currently the best logic I can think of is scraping Google News? Take broad license.

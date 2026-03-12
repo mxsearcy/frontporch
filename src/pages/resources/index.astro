@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ResourceCard from '../../components/ResourceCard.astro';
+import { loadResources, groupByCategory } from '../../lib/resources';
+
+const resources = loadResources('resources');
+const byCategory = groupByCategory(resources);
+const categories = Object.keys(byCategory).sort();
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+---
+
+<Layout title="Resources" section="resources">
+  <SectionHeader title="Resources" />
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:2rem;">
+    {categories.map(cat => (
+      <a href={`#${slugify(cat)}`} class="source-pill">{cat}</a>
+    ))}
+  </div>
+
+  <div class="space-y-12">
+    {categories.map(cat => (
+      <details open id={slugify(cat)}>
+        <summary class="subsection-heading">{cat}</summary>
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" style="margin-top:0.75rem;">
+          {byCategory[cat].map(r => (
+            <ResourceCard title={r.title} url={r.url} description={r.description} category={r.category} type={r.type} tags={r.tags} />
+          ))}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <div style="margin-top:3rem;padding:1.25rem;border:1px solid var(--border);">
+    <p style="font-size:0.85rem;color:var(--muted);">
+      Know something that belongs here? <a href="/contribute">See the contribute guide →</a>
+    </p>
+  </div>
+</Layout>

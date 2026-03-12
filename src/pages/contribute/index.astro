@@ -1,0 +1,398 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+
+// Update this when the repo is finalized
+const REPO_URL = 'https://github.com/mxsearcy/frontporch';
+---
+
+<Layout title="Contribute" section="contribute">
+  <SectionHeader title="Contribute" />
+
+  <div style="max-width:42rem;">
+
+    <p style="color:var(--muted);margin-bottom:2rem;line-height:1.7;">
+      All content on Frontporch is managed in a public git repository as YAML files.
+      Use the form below to submit an addition — it will open a pre-filled GitHub issue that a maintainer can review and merge.
+    </p>
+
+    <!-- ── Submission form ──────────────────────────────── -->
+    <section style="margin-bottom:3rem;padding:1.5rem;border:1px solid var(--border);background:var(--surface);">
+      <form id="submit-form" autocomplete="off">
+        <div class="field-row">
+          <label class="field-label" for="entry-type">Type</label>
+          <select id="entry-type" class="field-input">
+            <option value="news">News source</option>
+            <option value="resource">Learning resource</option>
+            <option value="diy">DIY / Skills resource</option>
+            <option value="mutual-aid">Mutual aid network</option>
+          </select>
+        </div>
+
+        <!-- News fields -->
+        <div id="fields-news">
+          <div class="field-row">
+            <label class="field-label" for="news-name">Outlet name</label>
+            <input type="text" id="news-name" class="field-input" placeholder="e.g. Labor Notes" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="news-url">Website URL</label>
+            <input type="url" id="news-url" class="field-input" placeholder="https://example.org" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="news-rss">RSS feed URL</label>
+            <input type="url" id="news-rss" class="field-input" placeholder="https://example.org/feed/" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="news-desc">Description</label>
+            <input type="text" id="news-desc" class="field-input" placeholder="One sentence description." />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="news-tags">Tags</label>
+            <input type="text" id="news-tags" class="field-input" placeholder="news, labor, politics" />
+            <p class="field-hint">Comma-separated. Options: news, labor, politics, international, investigative, environment, socialist, progressive, local, independent</p>
+          </div>
+        </div>
+
+        <!-- Resource / DIY fields (shared) -->
+        <div id="fields-resource" style="display:none;">
+          <div class="field-row">
+            <label class="field-label" for="res-title">Title</label>
+            <input type="text" id="res-title" class="field-input" placeholder="e.g. The Shock Doctrine" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="res-url">URL</label>
+            <input type="url" id="res-url" class="field-input" placeholder="https://example.org" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="res-desc">Description</label>
+            <textarea id="res-desc" class="field-input" rows="2" placeholder="One or two sentences. What is it, why does it matter."></textarea>
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="res-category">Category</label>
+            <input type="text" id="res-category" class="field-input" placeholder="e.g. Organizing" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="res-type">Type</label>
+            <select id="res-type" class="field-input">
+              <option value="article">article</option>
+              <option value="book">book</option>
+              <option value="guide">guide</option>
+              <option value="tool">tool</option>
+              <option value="video">video</option>
+              <option value="course">course</option>
+              <option value="archive">archive</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="res-tags">Tags</label>
+            <input type="text" id="res-tags" class="field-input" placeholder="strategy, tactics" />
+            <p class="field-hint">Comma-separated.</p>
+          </div>
+        </div>
+
+        <!-- Mutual Aid fields -->
+        <div id="fields-mutual-aid" style="display:none;">
+          <div class="field-row">
+            <label class="field-label" for="ma-name">Network name</label>
+            <input type="text" id="ma-name" class="field-input" placeholder="e.g. Mutual Aid Disaster Relief" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="ma-url">URL</label>
+            <input type="url" id="ma-url" class="field-input" placeholder="https://example.org" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="ma-desc">Description</label>
+            <input type="text" id="ma-desc" class="field-input" placeholder="One sentence description." />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="ma-region">Region</label>
+            <input type="text" id="ma-region" class="field-input" placeholder="National, International, or a city/state" />
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="ma-subsection">Subsection</label>
+            <select id="ma-subsection" class="field-input">
+              <option value="Active Networks">Active Networks</option>
+              <option value="Direct Action">Direct Action</option>
+              <option value="Survival">Survival</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="ma-tags">Tags</label>
+            <input type="text" id="ma-tags" class="field-input" placeholder="food, disaster-relief" />
+            <p class="field-hint">Comma-separated.</p>
+          </div>
+        </div>
+
+        <div class="field-row" style="margin-top:0.5rem;">
+          <label class="field-label" for="submitter-note">Note <span style="font-weight:400;opacity:0.7;">(optional)</span></label>
+          <textarea id="submitter-note" class="field-input" rows="2" placeholder="Anything the maintainer should know about this submission."></textarea>
+        </div>
+
+        <div style="margin-top:1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <button type="submit" class="btn-primary">Open GitHub issue →</button>
+          <span id="form-error" style="font-size:0.8rem;color:var(--accent);display:none;"></span>
+        </div>
+      </form>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Add a news source manually
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Edit <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">src/content/feeds/news.yaml</code>
+        and add an entry following this schema:
+      </p>
+      <pre style="background:var(--surface);border:1px solid var(--border);padding:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text);overflow-x:auto;line-height:1.6;"><code>- id: outlet-slug           # unique, lowercase, hyphenated
+  name: Outlet Name
+  url: https://example.org
+  rss: https://example.org/feed/
+  description: One sentence description.
+  tags: [news, politics]    # from: news, labor, politics, international,
+                            #   investigative, environment, socialist,
+                            #   progressive, local, independent</code></pre>
+      <p style="color:var(--muted);font-size:0.8rem;margin-top:0.75rem;">
+        Verify the RSS URL works before submitting — paste it into a feed reader or your browser.
+      </p>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Add a learning resource
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Add an entry to the appropriate file in
+        <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">src/content/resources/</code>
+        or create a new <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">.yaml</code> file for a new category:
+      </p>
+      <pre style="background:var(--surface);border:1px solid var(--border);padding:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text);overflow-x:auto;line-height:1.6;"><code>- title: Resource Title
+  url: https://example.org
+  description: One or two sentences. What is it, why does it matter.
+  category: Organizing        # displayed as section heading
+  type: guide                 # article | book | guide | tool |
+                              #   video | course | archive
+  tags: [strategy, tactics]</code></pre>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Add a mutual aid network
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Edit <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;background:var(--tag-bg);color:var(--tag-text);padding:0.1rem 0.3rem;">src/content/networks/mutual-aid.yaml</code>:
+      </p>
+      <pre style="background:var(--surface);border:1px solid var(--border);padding:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text);overflow-x:auto;line-height:1.6;"><code>- name: Network Name
+  url: https://example.org
+  description: One sentence description.
+  region: National            # National | International | or a city/state
+  subsection: Active Networks # Active Networks | Direct Action | Survival
+  tags: [food, disaster-relief]</code></pre>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        How to submit manually
+      </h2>
+      <ol style="color:var(--muted);font-size:0.9rem;line-height:2;padding-left:1.25rem;">
+        <li>Fork the repository on GitHub</li>
+        <li>Edit the relevant YAML file</li>
+        <li>Open a pull request with a brief description of what you're adding and why</li>
+        <li>A maintainer will review, verify the link/feed, and merge</li>
+      </ol>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:1rem;">
+        You can also open an issue if you want to propose something without writing YAML yourself.
+      </p>
+      <div style="margin-top:1.25rem;">
+        <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Go to GitHub →
+        </a>
+      </div>
+    </section>
+
+    <section style="margin-bottom:2.5rem;">
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        Support the project
+      </h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;line-height:1.6;">
+        Frontporch has no ads and no investors. If you find it useful, you can donate via Liberapay — a free, open-source recurring donation platform.
+      </p>
+      <a href="https://liberapay.com/frontporch/donate" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Donate on Liberapay →
+      </a>
+    </section>
+
+    <section>
+      <h2 class="font-serif" style="font-size:1.25rem;color:var(--text);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);">
+        What we include
+      </h2>
+      <ul style="color:var(--muted);font-size:0.9rem;line-height:2;padding-left:1.25rem;">
+        <li><strong style="color:var(--text);">News:</strong> editorially independent outlets with a public interest focus</li>
+        <li><strong style="color:var(--text);">Resources:</strong> practical, freely accessible guides, tools, and archives</li>
+        <li><strong style="color:var(--text);">Mutual aid:</strong> active networks with a real web presence</li>
+        <li><strong style="color:var(--text);">DIY/Skills:</strong> genuinely useful, accessible practical knowledge</li>
+      </ul>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:1rem;">
+        We don't have a strict ideological checklist, but this project skews toward grassroots,
+        worker-centered, and community-powered sources. Corporate media, think tanks funded by
+        billionaires, and paywalled content generally don't belong here.
+      </p>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .field-row {
+    margin-bottom: 1rem;
+  }
+  .field-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--label);
+    margin-bottom: 0.35rem;
+  }
+  .field-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.875rem;
+    padding: 0.45rem 0.65rem;
+    font-family: inherit;
+    transition: border-color 0.1s;
+    resize: vertical;
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  select.field-input { cursor: pointer; }
+  .field-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+</style>
+
+<script define:vars={{ REPO_URL }}>
+  const typeSelect = document.getElementById('entry-type');
+  const fieldSets = {
+    news: document.getElementById('fields-news'),
+    resource: document.getElementById('fields-resource'),
+    diy: document.getElementById('fields-resource'), // shares same fieldset
+    'mutual-aid': document.getElementById('fields-mutual-aid'),
+  };
+
+  function showFields(type) {
+    document.getElementById('fields-news').style.display = 'none';
+    document.getElementById('fields-resource').style.display = 'none';
+    document.getElementById('fields-mutual-aid').style.display = 'none';
+    const el = fieldSets[type];
+    if (el) el.style.display = '';
+  }
+
+  typeSelect.addEventListener('change', () => showFields(typeSelect.value));
+  showFields(typeSelect.value);
+
+  function parseTags(str) {
+    return str.split(',').map(t => t.trim()).filter(Boolean);
+  }
+
+  function buildYaml(type) {
+    if (type === 'news') {
+      const name = document.getElementById('news-name').value.trim();
+      const url = document.getElementById('news-url').value.trim();
+      const rss = document.getElementById('news-rss').value.trim();
+      const desc = document.getElementById('news-desc').value.trim();
+      const tags = parseTags(document.getElementById('news-tags').value);
+      const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      return `- id: ${id}\n  name: ${name}\n  url: ${url}\n  rss: ${rss}\n  description: ${desc}\n  tags: [${tags.join(', ')}]`;
+    }
+    if (type === 'resource' || type === 'diy') {
+      const title = document.getElementById('res-title').value.trim();
+      const url = document.getElementById('res-url').value.trim();
+      const desc = document.getElementById('res-desc').value.trim();
+      const category = document.getElementById('res-category').value.trim();
+      const resType = document.getElementById('res-type').value;
+      const tags = parseTags(document.getElementById('res-tags').value);
+      return `- title: ${title}\n  url: ${url}\n  description: ${desc}\n  category: ${category}\n  type: ${resType}\n  tags: [${tags.join(', ')}]`;
+    }
+    if (type === 'mutual-aid') {
+      const name = document.getElementById('ma-name').value.trim();
+      const url = document.getElementById('ma-url').value.trim();
+      const desc = document.getElementById('ma-desc').value.trim();
+      const region = document.getElementById('ma-region').value.trim();
+      const subsection = document.getElementById('ma-subsection').value;
+      const tags = parseTags(document.getElementById('ma-tags').value);
+      return `- name: ${name}\n  url: ${url}\n  description: ${desc}\n  region: ${region}\n  subsection: ${subsection}\n  tags: [${tags.join(', ')}]`;
+    }
+    return '';
+  }
+
+  function validate(type) {
+    if (type === 'news') {
+      if (!document.getElementById('news-name').value.trim()) return 'Outlet name is required.';
+      if (!document.getElementById('news-url').value.trim()) return 'Website URL is required.';
+      if (!document.getElementById('news-rss').value.trim()) return 'RSS feed URL is required.';
+    }
+    if (type === 'resource' || type === 'diy') {
+      if (!document.getElementById('res-title').value.trim()) return 'Title is required.';
+      if (!document.getElementById('res-url').value.trim()) return 'URL is required.';
+    }
+    if (type === 'mutual-aid') {
+      if (!document.getElementById('ma-name').value.trim()) return 'Network name is required.';
+      if (!document.getElementById('ma-url').value.trim()) return 'URL is required.';
+    }
+    return null;
+  }
+
+  const typeLabels = {
+    news: 'News source',
+    resource: 'Learning resource',
+    diy: 'DIY/Skills resource',
+    'mutual-aid': 'Mutual aid network',
+  };
+
+  const targetFiles = {
+    news: 'src/content/feeds/news.yaml',
+    resource: 'src/content/resources/',
+    diy: 'src/content/resources/diy/',
+    'mutual-aid': 'src/content/networks/mutual-aid.yaml',
+  };
+
+  document.getElementById('submit-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const type = typeSelect.value;
+    const errEl = document.getElementById('form-error');
+
+    const error = validate(type);
+    if (error) {
+      errEl.textContent = error;
+      errEl.style.display = '';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    const yaml = buildYaml(type);
+    const note = document.getElementById('submitter-note').value.trim();
+    const label = typeLabels[type];
+    const file = targetFiles[type];
+
+    const name = type === 'news' ? document.getElementById('news-name').value.trim()
+      : type === 'mutual-aid' ? document.getElementById('ma-name').value.trim()
+      : document.getElementById('res-title').value.trim();
+
+    const title = encodeURIComponent(`Add ${label}: ${name}`);
+    const body = encodeURIComponent(
+      `## Submission\n\n**Type:** ${label}\n**Target file:** \`${file}\`\n\n\`\`\`yaml\n${yaml}\n\`\`\`` +
+      (note ? `\n\n**Submitter note:** ${note}` : '')
+    );
+
+    window.open(`${REPO_URL}/issues/new?title=${title}&body=${body}`, '_blank', 'noopener');
+  });
+</script>

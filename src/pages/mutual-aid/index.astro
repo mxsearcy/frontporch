@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { parse as parseYaml } from 'yaml';
+
+const raw = readFileSync(join(process.cwd(), 'src/content/networks/mutual-aid.yaml'), 'utf-8');
+const networks = parseYaml(raw) as Array<{
+  name: string; url: string; description: string; region: string; subsection: string; tags: string[];
+}>;
+
+const subsectionOrder = ['Active Networks', 'Direct Action', 'Survival'];
+
+const bySubsection: Record<string, typeof networks> = {};
+for (const n of networks) {
+  const key = n.subsection ?? 'Active Networks';
+  if (!bySubsection[key]) bySubsection[key] = [];
+  bySubsection[key].push(n);
+}
+
+const activeSubsections = subsectionOrder.filter(s => bySubsection[s]?.length);
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+---
+
+<Layout title="Mutual Aid" section="mutual-aid">
+  <SectionHeader title="Mutual Aid" />
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:2rem;">
+    {activeSubsections.map(sub => (
+      <a href={`#${slugify(sub)}`} class="source-pill">{sub}</a>
+    ))}
+  </div>
+
+  <div class="space-y-12">
+    {activeSubsections.map(sub => (
+      <details open id={slugify(sub)}>
+        <summary class="subsection-heading">{sub}</summary>
+        <div class="grid gap-3 sm:grid-cols-2" style="margin-top:0.75rem;">
+          {bySubsection[sub].map(n => (
+            <article class="card">
+              <h3 class="font-serif" style="font-size:0.95rem;margin-bottom:0.4rem;">
+                <a href={n.url} target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;" class="card-title-link">
+                  {n.name}
+                </a>
+              </h3>
+              <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.6rem;">{n.description}</p>
+              <div class="flex flex-wrap gap-1">
+                {n.tags.map(tag => <span class="tag">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <div style="margin-top:2rem;padding:1.25rem;border:1px solid var(--border);">
+    <p style="font-size:0.85rem;color:var(--muted);">
+      Know a network we're missing? <a href="/contribute">See the contribute guide →</a>
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .card-title-link:hover { color: var(--accent); }
+</style>
